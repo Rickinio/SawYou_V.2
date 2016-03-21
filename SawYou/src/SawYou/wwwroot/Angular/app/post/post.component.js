@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', 'angular2/http', './post.service'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,23 +8,35 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, http_1, post_service_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
+            function (post_service_1_1) {
+                post_service_1 = post_service_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent() {
+                function AppComponent(_postService) {
+                    this._postService = _postService;
                 }
+                AppComponent.prototype.ngOnInit = function () { this.getPosts(); };
+                AppComponent.prototype.getPosts = function () {
+                    this.posts = this._postService.getPosts();
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: '<h1>My First Angular 2 App</h1>'
+                        templateUrl: 'Angular/app/post/postList.html',
+                        providers: [http_1.HTTP_PROVIDERS, post_service_1.PostService]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [post_service_1.PostService])
                 ], AppComponent);
                 return AppComponent;
             })();
@@ -32,4 +44,4 @@ System.register(['angular2/core'], function(exports_1) {
         }
     }
 });
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=post.component.js.map
