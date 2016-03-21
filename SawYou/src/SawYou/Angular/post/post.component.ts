@@ -6,7 +6,10 @@ import {Post, PostService} from './post.service';
 @Component({
     selector: 'my-app',
     templateUrl: 'Angular/app/post/postList.html',
-    providers: [HTTP_PROVIDERS,PostService]
+    providers: [
+        HTTP_PROVIDERS,
+        PostService
+    ]
     
 })
 export class AppComponent {
